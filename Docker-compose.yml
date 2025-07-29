@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: progress.15
+    enviroment:
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: microdemo
+volumes:
+  -pgdata:var/lib/postgresql/data
+ports:
+  -"5432:5432"
+pgadmin:
+  image: dpage/pgadmin
+  enviroment: 
+  PGADMIN_DEFAULT_EMAIL: admin@exam.com
+  PGADMIN_DEFAULT_PASSWORD: admin123
+  ports: 
+    - "5050:80"
+  depends_on:
+    -postgres
+  values:
+    -pgadmin_data:var
