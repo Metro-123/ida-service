@@ -9,9 +9,9 @@ app.use(express.json())
 app.get('/api/products',(req,res)=>{
     const products = [
         {id:1,name:'Laptop',price:2000},
-        {id:2,name:'Desktop',price:2500},
+        {id:2,name:'Desktop',price:25000},
         {id:3,name:'Phone',price:900},
-        {id:4,name:'Tv',price:3000},
+        {id:4,name:'Tv',price:30000},
     ]
     res.status(200).json({products})
 })
@@ -19,10 +19,10 @@ app.get('/api/products',(req,res)=>{
 // Getting a single product
 app.get("/api/products/:id",(req,res)=>{
         const products = [
-        {id:1,name:'Laptop',price:2000},
+        {id:1,name:'Laptop',price:20000},
         {id:2,name:'Desktop',price:2500},
         {id:3,name:'Phone',price:900},
-        {id:4,name:'Tv',price:3000},
+        {id:4,name:'Tv',price:300000},
     ]
 
     const product = products.find(p=>p.id === Number(req.params.id))
