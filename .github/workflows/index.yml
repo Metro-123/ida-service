@@ -20,14 +20,14 @@ jobs:
       - name: Log in to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.KEY}}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/ndubuisi .
+        run: docker build -t ${{ secrets.USERNAME }}/ndubuisi .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/ndubuisi
+        run: docker push ${{ secrets.USERNAME }}/ndubuisi
 
   deploy:
     needs: build
@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ndubuisi
+            docker pull ${{ secrets.USERNAME }}/ndubuisi
             docker stop ida || true
             docker rm ida || true
-            docker run -d --name ida -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/ndubuisi
+            docker run -d --name ida -p 3000:3000 ${{ secrets.USERNAME }}/ndubuisi
